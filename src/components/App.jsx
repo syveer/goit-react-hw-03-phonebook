@@ -4,7 +4,7 @@ import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import Notification from './Notification/Notification';
-import styles from './App.module.css';
+import styles from './App.css';
 
 class App extends Component {
   state = {

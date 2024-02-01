@@ -1,43 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import ContactItem from './ContactItem';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './ContactList.css';
 
-const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
+const ContactList = ({ contacts, onDeleteContact }) => (
+  <ul className={styles.contactList}>
+    {contacts.map(contact => (
+      <li key={contact.id} className={styles.contactListItem}>
+        <div className={styles.contactInfo}>
+          {contact.name}: {contact.number}
+        </div>
+        <button
+          type="button"
+          onClick={() => onDeleteContact(contact.id)}
+          className={`${styles.deleteButton} ${styles.button}`}
+        >
+          Delete
+        </button>
+      </li>
+    ))}
+  </ul>
+);
 
-  useEffect(() => {
-    // Citeste contactele din localStorage la incarcarea componentei
-    const storedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-    setContacts(storedContacts);
-  }, []);
-
-  const addContact = newContact => {
-    const updatedContacts = [...contacts, newContact];
-    setContacts(updatedContacts);
-    // Salveaza contactele in localStorage la adaugarea unui nou contact
-    localStorage.setItem('contacts', JSON.stringify(updatedContacts));
-  };
-
-  const deleteContact = contactId => {
-    const updatedContacts = contacts.filter(
-      contact => contact.id !== contactId
-    );
-    setContacts(updatedContacts);
-    // Salveaza contactele in localStorage la stergerea unui contact
-    localStorage.setItem('contacts', JSON.stringify(updatedContacts));
-  };
-
-  return (
-    <div>
-      <h1>Contact Book</h1>
-      {contacts.map(contact => (
-        <ContactItem
-          key={contact.id}
-          contact={contact}
-          onDelete={deleteContact}
-        />
-      ))}
-    </div>
-  );
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;

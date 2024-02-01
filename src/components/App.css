@@ -26,6 +26,6 @@ div {
 
 @media screen and (min-width: 1024px) {
   div {
-    max-width: 1024px;
+    max-width: 500px;
   }
 }
