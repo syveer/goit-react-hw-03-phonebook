@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Filter.css';
+import styles from './Filter.module.css';
 
 const Filter = ({ filter, onFilterChange }) => (
   <label className={styles.filterLabel}>

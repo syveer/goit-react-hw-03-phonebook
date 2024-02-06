@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './ContactForm.css';
+import styles from './ContactForm.module.css';
 
 class ContactForm extends Component {
   state = {
@@ -32,7 +32,7 @@ class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.handleChange}
-            pattern="/^[a-zA-Z]+( [a-zA-Z]+)+$/"
+            pattern="[a-zA-Z]+([- '][a-zA-Z]+)*"
             title="Name may contain only letters, apostrophe, dash and spaces."
             required
           />
@@ -45,7 +45,7 @@ class ContactForm extends Component {
             name="number"
             value={number}
             onChange={this.handleChange}
-            pattern="/^[0-9]+$/"
+            pattern="[0-9+() -]*"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
